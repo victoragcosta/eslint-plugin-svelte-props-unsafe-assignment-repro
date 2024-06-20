@@ -1,38 +1,12 @@
-import pluginJs from "@eslint/js";
 import tsParser from "@typescript-eslint/parser";
-import prettierConfig from "eslint-config-prettier";
-import svelte from "eslint-plugin-svelte";
-import globals from "globals";
 import svelteParser from "svelte-eslint-parser";
 import ts from "typescript-eslint";
+import tsPlugin from "@typescript-eslint/eslint-plugin"
 import svelteConfig from "./svelte.config.mjs";
 
 export default ts.config(
 	{
-		files: [
-			// JS and TS inside src run in the browser runtime
-			"src/**/*.{js,cjs,mjs}",
-			"src/**/*.{ts,cts,mts}",
-		],
-		languageOptions: { globals: globals.browser },
-	},
-	{
-		files: [
-			// Root JS and TS run in a node runtime
-			"*.{js,cjs,mjs}",
-			"*.{ts,cts,mts}",
-		],
-		languageOptions: { globals: globals.node },
-	},
-	pluginJs.configs.recommended,
-	{
-		extends: [
-			...ts.configs.recommended,
-			...ts.configs.strictTypeChecked,
-			...ts.configs.stylisticTypeChecked,
-		],
 		ignores: [
-			".nano-staged.mjs",
 			// Root JS and TS (not included in tsconfig.json and I'm lazy)
 			"*.{js,cjs,mjs}",
 			"*.{ts,cts,mts}",
@@ -40,35 +14,20 @@ export default ts.config(
 		languageOptions: {
 			parser: tsParser,
 			parserOptions: {
-				project: ['./tsconfig.json', './.svelte-kit/tsconfig.json'], 
+				project: true, 
+				// `programs` was giving some weird errors even though I wasn't using this config
 				programs: false,
 				tsconfigRootDir: import.meta.dirname,
 				extraFileExtensions: [".svelte"],
 			},
 		},
 		rules: {
-			"@typescript-eslint/restrict-template-expressions": [
-				"error",
-				{
-					allowNumber: true,
-					allowBoolean: true,
-					allowAny: true,
-				},
-			],
-			"@typescript-eslint/no-misused-promises": [
-				"error",
-				{
-					checksVoidReturn: {
-						arguments: false,
-						attributes: false,
-						// I don't know if this is annoying enough to be turned off
-						properties: true,
-					},
-				},
-			],
+			'@typescript-eslint/no-unsafe-assignment': 'error'
 		},
+		plugins: {
+			'@typescript-eslint': tsPlugin,
+		}
 	},
-	...svelte.configs["flat/recommended"],
 	{
 		files: ["**/*.svelte", "*.svelte"],
 		languageOptions: {
@@ -79,27 +38,6 @@ export default ts.config(
 			},
 		},
 	},
-	{
-		files: ["**/*.svelte.js", "*.svelte.js"],
-		languageOptions: {
-			parser: svelteParser,
-			parserOptions: {
-				svelteConfig,
-			},
-		},
-	},
-	{
-		files: ["**/*.svelte.ts", "*.svelte.ts"],
-		languageOptions: {
-			parser: svelteParser,
-			parserOptions: {
-				parser: tsParser,
-				svelteConfig,
-			},
-		},
-	},
-	...svelte.configs["flat/prettier"],
-	prettierConfig,
 	{
 		ignores: [
 			// IDEs
