@@ -4,6 +4,7 @@
 	interface LayoutProps {
 		children: Snippet;
 	}
+
 	let { children }: LayoutProps = $props() as LayoutProps;
 </script>
 

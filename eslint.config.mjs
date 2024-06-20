@@ -25,9 +25,9 @@ export default ts.config(
 		languageOptions: { globals: globals.node },
 	},
 	pluginJs.configs.recommended,
-	...ts.configs.recommended,
 	{
 		extends: [
+			...ts.configs.recommended,
 			...ts.configs.strictTypeChecked,
 			...ts.configs.stylisticTypeChecked,
 		],
@@ -40,7 +40,8 @@ export default ts.config(
 		languageOptions: {
 			parser: tsParser,
 			parserOptions: {
-				project: true,
+				project: ['./tsconfig.json', './.svelte-kit/tsconfig.json'], 
+				programs: false,
 				tsconfigRootDir: import.meta.dirname,
 				extraFileExtensions: [".svelte"],
 			},
