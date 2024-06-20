@@ -1,0 +1,17 @@
+# auto-generated
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# cache
+.eslintcache
+
+# .env
+*.local
+
+# IDE
+.vscode
+.idea

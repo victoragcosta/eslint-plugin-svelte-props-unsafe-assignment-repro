@@ -1,0 +1,38 @@
+{
+  "name": "keyboard-visualizer",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint:eslint": "eslint .",
+    "format:eslint": "eslint . --fix",
+    "lint:prettier": "prettier . --check",
+    "format:prettier": "prettier . --write",
+    "lint": "$npm_execpath run lint:eslint; err1=$?; $npm_execpath run lint:prettier && exit $err1",
+    "format": "$npm_execpath run format:eslint; err1=$?; $npm_execpath run format:prettier && exit $err1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.3.0",
+    "@sveltejs/adapter-auto": "^2.0.0",
+    "@sveltejs/kit": "^1.27.4",
+    "@typescript-eslint/parser": "^7.10.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-svelte": "^2.40.0",
+    "eslint": "^9.5.0",
+    "globals": "^15.3.0",
+    "prettier-plugin-svelte": "3.2.3",
+    "prettier": "3.2.5",
+    "svelte-check": "^3.6.0",
+    "svelte-eslint-parser": "^0.39.1",
+    "svelte": "^5.0.0-next.160",
+    "tslib": "^2.4.1",
+    "typescript-eslint": "7.10.0",
+    "typescript": "^5.0.0",
+    "vite": "^4.4.2"
+  },
+  "type": "module"
+}

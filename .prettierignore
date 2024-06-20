@@ -1,0 +1,20 @@
+.DS_Store
+node_modules
+/build
+/.svelte-kit
+/package
+.vercel
+.output
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Ignore most IDE files
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+# Ignore files for PNPM, NPM and YARN
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+bun.lockb
