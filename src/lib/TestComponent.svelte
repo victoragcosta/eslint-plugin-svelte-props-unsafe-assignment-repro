@@ -1,13 +1,12 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
 
-	interface LayoutProps {
+	interface TestComponentProps {
 		children: Snippet;
 	}
 
 	// This generates the error Unsafe assignment of an `any` value. [@typescript-eslint/no-unsafe-assignment]
-	let { children }: LayoutProps = $props();
+	let { children }: TestComponentProps = $props();
 </script>
 
-{@render children()}
-
+<pre>{@render children()}</pre>
