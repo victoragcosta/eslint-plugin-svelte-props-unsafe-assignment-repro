@@ -5,7 +5,7 @@
 		children: Snippet;
 	}
 
-	let { children }: LayoutProps = $props() as LayoutProps;
+	let { children }: LayoutProps = $props();
 </script>
 
 {@render children()}
